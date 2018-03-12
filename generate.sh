@@ -2,13 +2,7 @@
 
 set -e
 
-# We add a fake HOME so that bundle does not try to install in /
-export HOME=/dmake
-
 pushd $(dirname $0)
-
-bundle install
-
 
 if [ "$#" -gt 0 ]; then
     versions="$@"

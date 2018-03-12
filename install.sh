@@ -12,5 +12,5 @@ gem install bundle
 export HOME=/gem
 mkdir ${HOME}
 
-bundle install --gemfile Gemfile
+bundle install --gemfile $(dirname $0)/Gemfile
 rm -rf ${HOME}
