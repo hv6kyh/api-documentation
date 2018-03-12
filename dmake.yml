@@ -1,0 +1,23 @@
+dmake_version: 0.1
+app_name: doc
+
+docker:
+  base_image:
+      name: doc
+      root_image: ubuntu:16.04
+      install_scripts:
+        - install.sh
+      copy_files:
+        - Gemfile
+        - Gemfile.lock
+
+build:
+  commands:
+    - ./generate.sh
+
+services:
+  - service_name: doc
+    config:
+      ports:
+        - container_port: 8000
+          host_port: 8000
