@@ -4,7 +4,9 @@ set -e
 
 apt-get install -y --assume-yes ruby ruby-dev make zlib1g-dev
 # Needed for javascript runtime
-apt-get install nodejs
+apt-get install -y  nodejs
+# Needed for gem builds
+apt-get install -y build-essential
 
 gem install bundle
 
