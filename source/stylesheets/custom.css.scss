@@ -44,3 +44,16 @@ pre.middle {
   padding-top: 20px;
 }
 
+.anchor {
+  padding-right: 2px;
+  margin-left: -18px;
+  display: none;
+}
+
+.title {
+  &:hover {
+    .anchor {
+      display: inline-block;
+    }
+  }
+}
