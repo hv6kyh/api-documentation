@@ -1,4 +1,4 @@
-<a name="quick_start"></a>
+
 # Quick Start
 
 Before diving in the details of the API, let's detail first some vocabulary points that we will use consistently through this whole documentation:
@@ -160,7 +160,7 @@ The result of this command will be made of a JSON dictionnary `result` with one 
 Please refer to the [documentation](#create_a_network) for an example of how to upload a network.
 This operation involves defining of input images should be preprocessed via the `preprocessing` field. We give below some examples so such field:
 
-### <a name="net_cheat_caffe_classif"></a> Typical preprocessing for a Caffe classification network:
+### Typical preprocessing for a Caffe classification network:
 
 ```json
 {
@@ -182,7 +182,7 @@ This operation involves defining of input images should be preprocessed via the 
 }
 ```
 
-### <a name="net_cheat_caffe_detect"></a> Typical preprocessing for a Caffe Faster-RCNN network:
+### Typical preprocessing for a Caffe Faster-RCNN network:
 
 ```json
 {
@@ -217,7 +217,7 @@ This operation involves defining of input images should be preprocessed via the 
 }
 ```
 
-### <a name="net_cheat_tf_classif"></a> Typical preprocessing for a Tensorflow inception v3 network:
+### Typical preprocessing for a Tensorflow inception v3 network:
 
 ```json
 {
@@ -249,7 +249,7 @@ with open('unitary_mean.npy', 'wb') as f:
     np.save(f, mean, allow_pickle=False)
 ```
 
-### <a name="net_cheat_tf_detect"></a> Typical preprocessing for a Tensorflow detection network:
+### Typical preprocessing for a Tensorflow detection network:
 
 ```json
 {
