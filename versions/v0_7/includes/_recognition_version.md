@@ -334,7 +334,9 @@ Return 204 (no content).
 <a name="inference_reco_version"></a>
 ## Version Inference
 
-Run a inference on this specification version. This endpoint returns a task ID. Please refer to [the Spec Inference Request](#recognition_inference_request) to have a comprehensive list of the inference request arguments and response.
+Run a inference on this specification version. This endpoint returns a task ID. Please refer to [the Specification Inference](#specification-inference) to have a comprehensive list of the inference request arguments and response.
+
+
 
 > Definition
 
