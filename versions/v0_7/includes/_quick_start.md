@@ -350,7 +350,8 @@ In the post-processings proposed below, we omit the `thresholds` field on purpos
     "detection": {
         "direct_output": {
             "boxes_tensor": "detection_boxes:0",
-            "scores_tensor": "detection_scores:0"
+            "scores_tensor": "detection_scores:0",
+            "classes_tensor": "detection_classes:0"
         },
         "discard_threshold": 0.025,
         "nms_threshold": 0.3,
