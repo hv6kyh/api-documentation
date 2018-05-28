@@ -263,7 +263,7 @@ with open('unitary_mean.npy', 'wb') as f:
                 "pixel_scaling": 255.0,
                 "mean_file": "",
                 "target_size": "500",
-                "color_channels": "BGR"
+                "color_channels": "RGB"
             }
         }
     ],
