@@ -361,4 +361,21 @@ In the post-processings proposed below, we omit the `thresholds` field on purpos
 ```
 
 
+### <a name="version_cheat_yolo_detect"></a> Typical post-processing for a Yolo detection algorithm:
+
+```json
+{
+    "detection": {
+        "yolo_output": {
+	        "output_tensor": "import/output:0",
+            "anchors": [1.3221, 1.73145, 3.19275, 4.00944, 5.05587, 8.09892, 9.47112, 4.84053, 11.2364, 10.0071]
+		},
+        "discard_threshold": 0.025,
+        "nms_threshold": 0.3,
+        "normalize_wrt_tensor": ""
+    }
+}
+```
+
+
 
