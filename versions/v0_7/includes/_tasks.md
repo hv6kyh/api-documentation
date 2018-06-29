@@ -16,8 +16,8 @@ In most cases you will need to [get the task](#get_task_status) until the status
 Attribute | Type    | Description
 --------- | ------- | -----------
 id        | string  | The task ID
-status    | string  | The task status, either `"pending"`, `"success"`, or `"error"
-error     | string  | Defined in case of error, it is the error message
+status    | string  | The task status, either `"pending"`, `"success"`, or `"error"`
+error     | string  | Defined in case of error, it is the error message
 date_created | string | The creation data timestamp
 date_updated | string | The timestamp where status switched from "pending" to another status
 data      | object  | The response JSON of the endpoint that generated the task
