@@ -10,6 +10,7 @@ The input object describes the data to send as input to the network. You must sp
 Parameter      | Type          | Default | Description
 -------------- | ------------- | ------- | -----------
 image          | [object](#image_input_object) |         | An image input.
+video          | [object](#video_input_object) |         | A video input.
 
 <a name="image_input_object"></a>
 **Image Input Object**
@@ -19,9 +20,18 @@ Attribute   | Type    | Description
 source      | string  | May have various forms: <ul><li>The URL of the image</li><li>The base64 encoded content of the image prefixed by `data:image/{:format};base64,`.</li><li>The binary content of the image prefixed by `data:image/{:format};binary,`</li></ul> In the two last cases, `{:format}` is the image format (jpeg, png, etc...). If you don't know about the format just use `*`.
 bbox        | [object](#bbox_object)  | A [bounding box object](#bbox_object) to crop the image.
 polygon     | array([object](#point_object)) | An array of [point objects](#point_object) of size at least 3 to crop the image.
-crop_uniform_background  | bool | If true, an image depicting a foreground in front of a uniform background will be cropped arond the foreground (useful for marketplace images)
 
 
+
+
+
+<a name="video_input_object"></a>
+**Image Input Object**
+
+Attribute   | Type    | Description
+----------- | ------- | -----------
+source      | string  | May have various forms: <ul><li>The URL of the image</li><li>The base64 encoded content of the image prefixed by `data:image/{:format};base64,`.</li><li>The binary content of the image prefixed by `data:image/{:format};binary,`</li></ul> In the two last cases, `{:format}` is the image format (jpeg, png, etc...). If you don't know about the format just use `*`.
+process_fps | float   | The number of inference per second requested. Defaults to 1. Use a float number lower than one if you want to process less than one frame per second (e.g. passing 0.5 will result in a inference every 2 seconds).
 
 
 

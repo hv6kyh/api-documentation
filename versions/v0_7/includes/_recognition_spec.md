@@ -617,6 +617,8 @@ label_id  | int        | The recognized label ID from the specification's [label
 label_name| string     | The recognized label name from the specification's [label object](#reco_label_object).
 score     | float      | The recognition score.
 threshold | float      | The recognition threshold that was defined by the recognition version [post-processing](#reco_pp_classification_object).
+sequence_index | int   | The position of the prediction if the input data was a sequence of inputs (e.g. when passing a video for a network that accepts images), null otherwise.
+sequence_time | float   | If the input data is a time serie, it represents the position of the prediction corresponding to `sequence_index` in seconds, null otherwise.
 roi       | [object](#prediction_roi_object) | (optionnal) If the `roi` field of the corresponding [labels output object](#reco_labels_output_object) is not `"NONE"`, this field will store a [ROI object](#prediction_roi_object).
 
 <a name="prediction_roi_object"></a>
