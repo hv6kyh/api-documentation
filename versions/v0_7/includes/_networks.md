@@ -554,146 +554,141 @@ Return 204 (no content).
 
 
 
-<a name="inference_network"></a>
-## Network Inference
+<!-- <a name="inference_network"></a> -->
+<!-- ## Network Inference -->
 
-Run a forward pass on the specified network. This endpoint returns a task ID.
+<!-- Run a forward pass on the specified network. This endpoint returns a task ID. -->
 
-> Definition
+<!-- > Definition -->
 
-```shell--curl
-# To run inference on a public network, use:
-POST {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/{NETWORK_ID}/inference
+<!-- ```shell--curl -->
+<!-- # To run inference on a public network, use: -->
+<!-- POST {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/{NETWORK_ID}/inference -->
 
-# To run inference on your own network, use:
-POST {{ VULCAIN_URL }}/{{ VERSION }}/networks/{NETWORK_ID}/inference
-```
+<!-- # To run inference on your own network, use: -->
+<!-- POST {{ VULCAIN_URL }}/{{ VERSION }}/networks/{NETWORK_ID}/inference -->
+<!-- ``` -->
 
-```python--Python
-# {NETWORK_ID} may be a string for a public
-# network or an integer for your own network.
-network = client.Network.retrieve({NETWORK_ID})
-network.inference(...)
-```
+<!-- ```python--Python -->
+<!-- # {NETWORK_ID} may be a string for a public -->
+<!-- # network or an integer for your own network. -->
+<!-- network = client.Network.retrieve({NETWORK_ID}) -->
+<!-- network.inference(...) -->
+<!-- ``` -->
 
-### Arguments
+<!-- ### Arguments -->
 
-Parameter      | Type          | Default | Description
--------------- | ------------- | ------- | -----------
-network_id     | int           |         | The neural network ID
-inputs         | array([object](#input_object)) |         | The inputs of the neural network as an array of [input objects](#input_object). *Must be non empty.*
-output_tensors | array(string) |         | An array of tensors to output. *Must be non empty.*
+<!-- Parameter      | Type          | Default | Description -->
+<!-- -------------- | ------------- | ------- | ----------- -->
+<!-- network_id     | int           |         | The neural network ID -->
+<!-- inputs         | array([object](#input_object)) |         | The inputs of the neural network as an array of [input objects](#input_object). *Must be non empty.* -->
+<!-- output_tensors | array(string) |         | An array of tensors to output. *Must be non empty.* -->
 
-> Example Request
+<!-- > Example Request -->
 
-```shell--curl
-URL=https://static.deepomatic.com/resources/demos/api-clients/dog2.jpg
-# Inference from an URL:
-curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \
-{{ CURL_CREDENTIALS }} \
--d inputs[0]image.source=${URL} \
--d output_tensors="prob" \
--d output_tensors="pool2/3x3_s2" \
--d output_tensors="pool5/7x7_s1"
+<!-- ```shell--curl -->
+<!-- URL=https://static.deepomatic.com/resources/demos/api-clients/dog2.jpg -->
+<!-- # Inference from an URL: -->
+<!-- curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \ -->
+<!-- {{ CURL_CREDENTIALS }} \ -->
+<!-- -d inputs[0]image.source=${URL} \ -->
+<!-- -d output_tensors="prob" \ -->
+<!-- -d output_tensors="pool2/3x3_s2" \ -->
+<!-- -d output_tensors="pool5/7x7_s1" -->
 
-# You can also directly send an image file:
-curl ${URL} > /tmp/img.jpg
-curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \
-{{ CURL_CREDENTIALS }} \
--F inputs[0]image.source=@/tmp/img.jpg \
--F output_tensors="prob"
+<!-- # You can also directly send an image file: -->
+<!-- curl ${URL} > /tmp/img.jpg -->
+<!-- curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \ -->
+<!-- {{ CURL_CREDENTIALS }} \ -->
+<!-- -F inputs[0]image.source=@/tmp/img.jpg \ -->
+<!-- -F output_tensors="prob" -->
 
-# You can finally send base64 data by prefixing it with 'data:image/*;base64,'
-BASE64_DATA=$(cat /tmp/img.jpg | base64)
-curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \
-{{ CURL_CREDENTIALS }} \
--d inputs[0]image.source="data:image/*%3Bbase64,${BASE64_DATA}" \
--d output_tensors="prob"
+<!-- # You can finally send base64 data by prefixing it with 'data:image/*;base64,' -->
+<!-- BASE64_DATA=$(cat /tmp/img.jpg | base64) -->
+<!-- curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \ -->
+<!-- {{ CURL_CREDENTIALS }} \ -->
+<!-- -d inputs[0]image.source="data:image/*%3Bbase64,${BASE64_DATA}" \ -->
+<!-- -d output_tensors="prob" -->
 
-# You can finally send base64 data by prefixing it with 'data:image/*;binary,'
-FORM_ENCODED_BINARY_DATA="%5C0%5C232%5C45%5C13"
-curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \
-{{ CURL_CREDENTIALS }} \
--d inputs[0]image.source="data:image/*%3Bbinary,${FORM_ENCODED_BINARY_DATA}" \
--d output_tensors="prob" \
--H "Content-Type: application/x-www-form-urlencoded"
-```
+<!-- # You can finally send base64 data by prefixing it with 'data:image/*;binary,' -->
+<!-- FORM_ENCODED_BINARY_DATA="%5C0%5C232%5C45%5C13" -->
+<!-- curl {{ VULCAIN_URL }}/{{ VERSION }}/networks/public/imagenet-inception-v1/inference \ -->
+<!-- {{ CURL_CREDENTIALS }} \ -->
+<!-- -d inputs[0]image.source="data:image/*%3Bbinary,${FORM_ENCODED_BINARY_DATA}" \ -->
+<!-- -d output_tensors="prob" \ -->
+<!-- -H "Content-Type: application/x-www-form-urlencoded" -->
+<!-- ``` -->
 
-```python--Python
-import base64
-import sys, tarfile
-if sys.version_info >= (3, 0):
-    from urllib.request import urlretrieve
-else:
-    from urllib import urlretrieve
+<!-- ```python--Python -->
+<!-- import base64 -->
+<!-- import sys, tarfile -->
+<!-- if sys.version_info >= (3, 0): -->
+<!--     from urllib.request import urlretrieve -->
+<!-- else: -->
+<!--     from urllib import urlretrieve -->
 
-from deepomatic import ImageInput
-{{ PYTHON_CREDENTIALS }}
+<!-- from deepomatic import ImageInput -->
+<!-- {{ PYTHON_CREDENTIALS }} -->
 
-network = client.Network.retrieve("imagenet-inception-v1")
+<!-- network = client.Network.retrieve("imagenet-inception-v1") -->
 
-# Inference from an URL:
-url = "https://static.deepomatic.com/resources/demos/api-clients/dog2.jpg"
-network.inference(inputs=[ImageInput(url)], output_tensors=["prob", "pool2/3x3_s2", "pool5/7x7_s1"])
+<!-- # Inference from an URL: -->
+<!-- url = "https://static.deepomatic.com/resources/demos/api-clients/dog2.jpg" -->
+<!-- network.inference(inputs=[ImageInput(url)], output_tensors=["prob", "pool2/3x3_s2", "pool5/7x7_s1"]) -->
 
-# You can also directly send an image file:
-urlretrieve(url, '/tmp/img.jpg')
-with open('/tmp/img.jpg', 'rb') as fp:
-    network.inference(inputs=[ImageInput(fp)], output_tensors=["prob"])
+<!-- # You can also directly send an image file: -->
+<!-- urlretrieve(url, '/tmp/img.jpg') -->
+<!-- with open('/tmp/img.jpg', 'rb') as fp: -->
+<!--     network.inference(inputs=[ImageInput(fp)], output_tensors=["prob"]) -->
 
-# You can also send binary data:
-with open('/tmp/img.jpg', 'rb') as fp:
-    binary_data = fp.read()
+<!-- # You can also send binary data: -->
+<!-- with open('/tmp/img.jpg', 'rb') as fp: -->
+<!--     binary_data = fp.read() -->
 
-network.inference(inputs=[ImageInput(binary_data, encoding="binary")], output_tensors=["prob"])
+<!-- network.inference(inputs=[ImageInput(binary_data, encoding="binary")], output_tensors=["prob"]) -->
 
-# If you finally want to send base64 data, you can use:
-base64_data = base64.b64encode(binary_data)
-network.inference(inputs=[ImageInput(base64_data, encoding="base64")], output_tensors=["prob"])
-```
+<!-- # If you finally want to send base64 data, you can use: -->
+<!-- base64_data = base64.b64encode(binary_data) -->
+<!-- network.inference(inputs=[ImageInput(base64_data, encoding="base64")], output_tensors=["prob"]) -->
+<!-- ``` -->
 
-### Response
+<!-- ### Response -->
 
-The task data will contain the list of request tensors, in base64 format:
+<!-- The task data will contain the list of request tensors, in base64 format: -->
 
-Attribute | Type    | Description
---------- | ------- | -----------
-tensors   | array([object](#tensor_object))  | An array of [tensors objects](#tensor_object).
+<!-- Attribute | Type    | Description -->
+<!-- --------- | ------- | ----------- -->
+<!-- tensors   | array([object](#tensor_object))  | An array of [tensors objects](#tensor_object). -->
 
-<a name="tensor_object"></a>
-#### Tensor Object
+<!-- <a name="tensor_object"></a> -->
+<!-- #### Tensor Object -->
 
-A tensor is a multi-dimensional array of numbers:
+<!-- A tensor is a multi-dimensional array of numbers: -->
 
-Attribute | Type       | Description
---------- | -------    | -----------
-name      | string     | The name of the tensor.
-dim       | array(int) | An array of integers representing the tensor dimensions.
-data      | array(float) | Tensor data linearized in row-major order.
+<!-- Attribute | Type       | Description -->
+<!-- --------- | -------    | ----------- -->
+<!-- name      | string     | The name of the tensor. -->
+<!-- dim       | array(int) | An array of integers representing the tensor dimensions. -->
+<!-- data      | array(float) | Tensor data linearized in row-major order. -->
 
-> Example Response
+<!-- > Example Response -->
 
-```json
-{
-    "task_id": "123"
-}
-```
+<!-- ```json -->
+<!-- { -->
+<!--     "task_id": "123" -->
+<!-- } -->
+<!-- ``` -->
 
-> Example of Task Data
+<!-- > Example of Task Data -->
 
-```json
-{
-    "tensors": [
-        {
-            "name": "some_tensor",
-            "dim": [1, 3, 2, 1],
-            "data": [7.17177295e-09, 9.09684132e-08, 7.82869236e-09, 2.53358806e-10, 3.2443765e-08, 3.22385874e-09]
-        }
-    ]
-}
-```
-
-
-
-
-
+<!-- ```json -->
+<!-- { -->
+<!--     "tensors": [ -->
+<!--         { -->
+<!--             "name": "some_tensor", -->
+<!--             "dim": [1, 3, 2, 1], -->
+<!--             "data": [7.17177295e-09, 9.09684132e-08, 7.82869236e-09, 2.53358806e-10, 3.2443765e-08, 3.22385874e-09] -->
+<!--         } -->
+<!--     ] -->
+<!-- } -->
+<!-- ``` -->
