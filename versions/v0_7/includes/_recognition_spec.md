@@ -525,26 +525,22 @@ curl {{ VULCAIN_URL }}/{{ VERSION }}/recognition/public/fashion-v4/inference \
 {{ CURL_CREDENTIALS }} \
 -d inputs[0]image.source="${URL}" \
 -d show_discarded="True" \
+-H "Content-Type: application/json" \
 -d max_predictions=100
 
-# You can also directly send an image file:
+# You can also directly send an image file or binary content using multipart/form-data:
 curl ${URL} > /tmp/img.jpg
 curl {{ VULCAIN_URL }}/{{ VERSION }}/recognition/public/fashion-v4/inference \
 {{ CURL_CREDENTIALS }} \
 -F inputs[0]image.source=@/tmp/img.jpg
 
-# You can also send base64 data by prefixing it with 'data:image/*;base64,'
+# You can also send base64 data by prefixing it with 'data:image/*;base64,' and sending it as application/json:
 BASE64_DATA=$(cat /tmp/img.jpg | base64)
 curl {{ VULCAIN_URL }}/{{ VERSION }}/recognition/public/fashion-v4/inference \
 {{ CURL_CREDENTIALS }} \
+-H "Content-Type: application/json" \
 -d inputs[0]image.source="data:image/*%3Bbase64,${BASE64_DATA}"
 
-# You can finally send base64 data by prefixing it with 'data:image/*;binary,'
-FORM_ENCODED_BINARY_DATA="%5C0%5C232%5C45%5C13"
-curl {{ VULCAIN_URL }}/{{ VERSION }}/recognition/public/fashion-v4/inference \
-{{ CURL_CREDENTIALS }} \
--d inputs[0]image.source="data:image/*%3Bbinary,${FORM_ENCODED_BINARY_DATA}" \
--H "Content-Type: application/x-www-form-urlencoded"
 ```
 
 ```python--Python
