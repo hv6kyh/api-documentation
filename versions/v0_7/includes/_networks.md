@@ -12,7 +12,7 @@ name                | string |            | A short name for your network.
 description         | string |            | A longer description of your network.
 update_date         | string | read-only  | Date time (ISO 8601 format) of the last update of the network.
 metadata            | object |            | A JSON field containing any kind of information that you may find interesting to store.
-framework           | string | immutable  | A string describing which framework to use for your network. Possible values are: <ul><li>`nv-caffe-0.x-mod`: A version of [Caffe modified by NVIDIA](https://github.com/NVIDIA/caffe) and deepomatic to add support for Faster-RCNN. Currently version **0.16.4**</li><li>`tensorflow-1.x`: [Tensorflow](https://github.com/tensorflow): currently version **1.5**</li></ul>
+framework           | string | immutable  | A string describing which framework to use for your network. Possible values are: <ul><li>`nv-caffe-0.x-mod`: A version of [Caffe modified by NVIDIA](https://github.com/NVIDIA/caffe) and deepomatic to add support for Faster-RCNN. Currently version **0.17.0**</li><li>`tensorflow-1.x`: [Tensorflow](https://github.com/tensorflow): currently version **1.5**</li></ul>
 preprocessing       | [object](#nn_preprocessing_object) | immutable  | A [preprocessing object](#nn_preprocessing_object) to describe how input data should be pre-processed. *Once the network is created, you cannot modify this field anymore*.
 task_id             | int    | read-only  | ID of the task containing the deployment status of the network.
 
@@ -78,7 +78,7 @@ Parameter           | Type    | Default  | Description
 name                | string  |      | A short name for your network.
 description         | string  | ""   | A longer description of your network.
 metadata            | object  | {}   | A JSON field containing any kind of information that you may find interesting to store.
-framework           | string |       | A string describing which framework to use for your network. Possible values are: <ul><li>`nv-caffe-0.x-mod`: A version of [Caffe modified by NVIDIA](https://github.com/NVIDIA/caffe) and deepomatic to add support for Faster-RCNN. Currently version **0.16.4**</li><li>`tensorflow-1.x`: [Tensorflow](https://github.com/tensorflow): currently version **1.5**</li></ul>
+framework           | string |       | A string describing which framework to use for your network. Possible values are: <ul><li>`nv-caffe-0.x-mod`: A version of [Caffe modified by NVIDIA](https://github.com/NVIDIA/caffe) and deepomatic to add support for Faster-RCNN. Currently version **0.17.0**</li><li>`tensorflow-1.x`: [Tensorflow](https://github.com/tensorflow): currently version **1.5**</li></ul>
 preprocessing       | [object](#nn_preprocessing_object) |     | A [preprocessing object](#nn_preprocessing_object) to describe how input data should be pre-processed. *Once the network is created, you cannot modify this field anymore*.
 *&lt;additionnal-files&gt;* | file | | Extra files for network graph and weights, as well as mean files needed by the preprocessing. See below.
 
